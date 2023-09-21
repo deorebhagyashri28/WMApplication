@@ -1,0 +1,36 @@
+<div class="container">
+    <!-- <mat-card>
+        <mat-card-header> 
+            <mat-card-title>Personal Information</mat-card-title>
+        </mat-card-header>
+        <mat-card-content> -->
+        <div class="row">
+        <div class="col-10">   
+        <form [formGroup]="personalData" #form="ngForm">
+            <div class="form-group">
+                <label for="fname" class="form-label">First Name:</label>
+                <input type="text" id="fname" name="fname" formControlName="fname"
+                 placeholder="First name"
+                 required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="lname" class="form-label">Last Name:</label>
+                <input type="text" id="lname" name="lname" formControlName="lname" 
+                placeholder="Last Name"
+                 required  class="form-control ">
+            </div>
+            <div class="form-group">
+                <label for="telephone" class="form-label">Telephone:</label>
+                <input type="number" id="telephone" name="telephone" formControlName="telephone" 
+                placeholder="Telephone Number"
+                 required class="form-control ">
+            </div>
+        </form>
+    <!-- </mat-card-content>
+    <mat-card-footer> -->
+    <button type="button" class="btn btn-primary" (click)="next()">Next</button>
+    <!-- </mat-card-footer>
+    </mat-card> -->
+    </div>
+    </div>
+</div>
