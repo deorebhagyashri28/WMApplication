@@ -8,8 +8,8 @@ import { AddressInformationComponent } from './address-information/address-infor
 import { PaymentInformationComponent } from './payment-information/payment-information.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SuccessComponent } from './success/success.component';
-import {MatCardModule} from '@angular/material/card';
-
+import { HttpClientModule } from '@angular/common/http';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +17,15 @@ import {MatCardModule} from '@angular/material/card';
     PersonalInformationComponent,
     AddressInformationComponent,
     PaymentInformationComponent,
-    SuccessComponent
+    SuccessComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
-    MatCardModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

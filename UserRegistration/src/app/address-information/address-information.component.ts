@@ -19,9 +19,7 @@ export class AddressInformationComponent {
 
   })
 
-  constructor( private router: Router, private activatedRoute: ActivatedRoute){
-
-  }
+  constructor( private router: Router, private activatedRoute: ActivatedRoute){  }
 
   ngOnInit():void{
     if(localStorage.getItem('formStage2Data'))
@@ -39,6 +37,5 @@ export class AddressInformationComponent {
   {
     localStorage.setItem('formStage2Data', JSON.stringify(this.addressData.value));
     this.router.navigate(['/', 'paymentInfo']);
-
-}
+  }
 }
