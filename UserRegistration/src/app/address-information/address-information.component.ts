@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute,ActivatedRouteSnapshot , ParamMap, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { DataStorageServiceService } from '../Services/data-storage-service.service';
 
 @Component({
   selector: 'app-address-information',
@@ -13,29 +14,23 @@ export class AddressInformationComponent {
  
   addressData = new FormGroup({
     street: new FormControl('', Validators.required),
-    hnumber : new FormControl('', Validators.required),
-    zcode : new FormControl('', Validators.required),
+    houseNumber : new FormControl('', Validators.required),
+    zipCode : new FormControl('', [Validators.required, Validators.maxLength(5)]),
     city : new FormControl('', Validators.required)
-
   })
 
-  constructor( private router: Router, private activatedRoute: ActivatedRoute){  }
+  constructor( private router: Router,public dataStorage:DataStorageServiceService){ }
 
   ngOnInit():void{
-    if(localStorage.getItem('formStage2Data'))
-    {
-      console.log("formStage1Data stage 1:",localStorage.getItem('formStage1Data'));
-     
-    }
-   
+    this.addressData.setValue(JSON.parse(localStorage.getItem('addressDetailsInSessions') ||''));  
   }
-  previous()
+  goToPreviousStep()
   {
     this.router.navigate(['/', 'personalInfo']);
   }
-  next()
+  goToNextStep()
   {
-    localStorage.setItem('formStage2Data', JSON.stringify(this.addressData.value));
+    this.dataStorage.setLocalData('addressDetailsInSessions', JSON.stringify(this.addressData.value));
     this.router.navigate(['/', 'paymentInfo']);
   }
 }

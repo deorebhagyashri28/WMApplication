@@ -25,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+// assuming frontend and server are running on same machine in that case proxy.json file will not required.
+// if they are not same machine then proxy settings has to be done accordingly

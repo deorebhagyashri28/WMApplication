@@ -1,38 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { toArray } from 'rxjs';
+import { DataStorageServiceService } from '../Services/data-storage-service.service';
 
 @Component({
   selector: 'app-personal-information',
   templateUrl: './personal-information.component.html',
   styleUrls: ['./personal-information.component.scss']
 })
+
 export class PersonalInformationComponent implements OnInit {
-  stageFirstData: any;
- 
 
-  constructor(private router: Router){
-  }
-
-  ngOnInit():void{
-    
-    if(localStorage.getItem('formStage1Data'))
-    {
-      console.log("formStage1Data stage 1:",localStorage.getItem('formStage1Data'));
-    }
-   
-  }
-
- 
   personalData = new FormGroup({
-    fname: new FormControl('', Validators.required),
-    lname : new FormControl('', Validators.required),
+    fname: new FormControl('', [Validators.required,Validators.minLength(3), Validators.maxLength(20)]),
+    lname : new FormControl(''),
     telephone : new FormControl('', Validators.required)
   })
 
-  next(){
-    localStorage.setItem('formStage1Data', JSON.stringify(this.personalData.value));
-    this.router.navigate(['/', 'addressInfo']);
+  constructor(private router: Router,public dataStorage:DataStorageServiceService){
+  }
+
+  ngOnInit():void{   
+      this.personalData.setValue(JSON.parse(localStorage.getItem('personalDetailsInSessions') ||'')); 
+   
+  } 
+
+  goToNextStep()
+  {
+    this.personalData.markAllAsTouched();   
+    this.dataStorage.setLocalData('personalDetailsInSessions', JSON.stringify(this.personalData.value));
+    this.router.navigate(['/', 'addressInfo']); 
   }
 }

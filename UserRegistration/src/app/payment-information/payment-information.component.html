@@ -1,20 +1,42 @@
-<div class="formcontainer center">
-    <p class="heading">Payment Information</p>
-    <hr>
-    <form [formGroup]="paymentData" #form="ngForm">
-        <div class="form-group">
-            <label for="accOwner" class="form-label">Account owner</label>
-            <input type="text" id="accOwner" name="accOwner" formControlName="accOwner" placeholder="Account Owner"
-             required class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="iban" class="form-label">IBAN</label>
-            <input type="text" id="iban" name="iban" formControlName="iban" placeholder="IBAN"
-             required  class="form-control ">
-        </div>
-        <div class="buttonStyle">
-            <button type="button" class="btn btn-secondary" mdbRipple (click)="previous()">Back</button>
-            <button type="button" class="btn btn-primary" mdbRipple (click)="submit()">Submit</button>
-        </div>
-    </form>
-    </div>
+<mat-toolbar color="primary">
+    <span class="fill-remaining-space">User Registration Form</span>
+</mat-toolbar>
+
+<div class="col">
+    <mat-card class="center">
+        <mat-card-title>Payment Information</mat-card-title>
+        <mat-divider></mat-divider>
+        <br>
+        <mat-card-content>
+
+            <form class="form" [formGroup]="paymentDetail">
+                <div class="row">
+                    <mat-form-field class="form-element" appearance="outline">
+                        <mat-label>Account Owner</mat-label>
+                        <input matInput formControlName="accOwner" class="form-control" />
+                        <mat-error
+                            *ngIf="paymentDetail.get('accOwner')?.hasError('required') && (paymentDetail.get('accOwner')?.dirty || paymentDetail.get('accOwner')?.touched)">
+                            Account Owner is required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field class="form-element" appearance="outline">
+                        <mat-label>IBAN</mat-label>
+                        <input matInput formControlName="iban" class="form-control" />
+                        <mat-error
+                            *ngIf="paymentDetail.get('iban')?.hasError('required') && (paymentDetail.get('iban')?.dirty || paymentDetail.get('iban')?.touched)">
+                            IBAN is required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="alignment">
+                    <button class="submit-btn" mat-raised-button color="accent"
+                        (click)="goToPreviousStep()">Previous</button>
+                    <button class="submit-btn" type="submit" mat-raised-button color="primary"
+                        [disabled]="!paymentDetail.valid" (click)="submitForm()">Submit</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
