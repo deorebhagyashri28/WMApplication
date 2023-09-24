@@ -30,6 +30,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ngx-spinner/animations/ball-clip-rotate.css",
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
@@ -64,6 +65,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "src/proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "UserRegistration:build:production"
@@ -94,6 +98,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ngx-spinner/animations/ball-clip-rotate.css",
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],

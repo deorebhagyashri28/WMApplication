@@ -7,11 +7,7 @@ import { Component } from '@angular/core';
 })
 export class SuccessComponent {
   constructor()
-  {
-    
-    // clear storage here on success
-    localStorage.clear();
-  }
+  {  }
 
   ngOnInit():void{
 

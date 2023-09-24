@@ -7,12 +7,17 @@ export class DataStorageServiceService {
 
   constructor() { }
 
-  setStorage()
+  getLocalData(keyData:any)
   {
-  
-
+    return localStorage.getItem(keyData); 
+    
   }
-  getStorage(){
-
+  setLocalData(keyData:any,data:any)
+  {
+    localStorage.setItem(keyData,data);  
+  }
+  clearStorage()
+  {
+    localStorage.clear();
   }
 }

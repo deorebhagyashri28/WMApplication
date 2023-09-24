@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute,ActivatedRouteSnapshot , ParamMap, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { DataStorageServiceService } from '../Services/data-storage-service.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-address-information',
@@ -12,30 +14,34 @@ import { ActivatedRoute,ActivatedRouteSnapshot , ParamMap, Router } from '@angul
 export class AddressInformationComponent {
  
   addressData = new FormGroup({
-    street: new FormControl('', Validators.required),
-    hnumber : new FormControl('', Validators.required),
-    zcode : new FormControl('', Validators.required),
-    city : new FormControl('', Validators.required)
-
+    street: new FormControl('', [Validators.required,Validators.pattern('^[a-zA-Z0-9 _-]*$')]),
+    houseNumber : new FormControl('', [Validators.required,Validators.pattern('^[0-9]*$')]),
+    zipCode : new FormControl('', [Validators.required, Validators.maxLength(5),Validators.pattern('^[0-9]*$')]),
+    city : new FormControl('', [Validators.required,Validators.pattern('^[a-zA-Z _-]*$')])
   })
 
-  constructor( private router: Router, private activatedRoute: ActivatedRoute){  }
+  constructor( private router: Router,public dataStorage:DataStorageServiceService,private spinner: NgxSpinnerService){ 
+    if(this.dataStorage.getLocalData('addressDetailsInSessions'))
+    {
+      this.router.navigate(['/', 'paymentInfo']); 
+    }
+  }
 
   ngOnInit():void{
-    if(localStorage.getItem('formStage2Data'))
-    {
-      console.log("formStage1Data stage 1:",localStorage.getItem('formStage1Data'));
-     
-    }
-   
+    this.addressData.setValue(JSON.parse(this.dataStorage.getLocalData('addressDetailsInSessions') ||''));  
   }
-  previous()
+  goToPreviousStep()
   {
     this.router.navigate(['/', 'personalInfo']);
   }
-  next()
+  goToNextStep()
   {
-    localStorage.setItem('formStage2Data', JSON.stringify(this.addressData.value));
-    this.router.navigate(['/', 'paymentInfo']);
+    this.spinner.show();
+    this.dataStorage.setLocalData('addressDetailsInSessions', JSON.stringify(this.addressData.value));
+   
+    setTimeout(() => {
+      this.spinner.hide();
+      this.router.navigate(['/', 'paymentInfo']);
+    }, 2000)
   }
 }
