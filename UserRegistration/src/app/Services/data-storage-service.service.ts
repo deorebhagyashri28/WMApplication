@@ -7,6 +7,11 @@ export class DataStorageServiceService {
 
   constructor() { }
 
+  getLocalData(keyData:any)
+  {
+    return localStorage.getItem(keyData); 
+    
+  }
   setLocalData(keyData:any,data:any)
   {
     localStorage.setItem(keyData,data);  

@@ -5,6 +5,7 @@ import { HttpCallServiceService } from '../Services/http-call-service.service';
 import { PaymentData } from '../models/payment-data';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataStorageServiceService } from '../Services/data-storage-service.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-payment-information',
@@ -12,20 +13,22 @@ import { DataStorageServiceService } from '../Services/data-storage-service.serv
   styleUrls: ['./payment-information.component.scss']
 })
 export class PaymentInformationComponent {
-  constructor(private router: Router,public userDataService: HttpCallServiceService,private snackBar: MatSnackBar,public dataStorage:DataStorageServiceService){
+  constructor(private router: Router,public userDataService: HttpCallServiceService,public dataStorage:DataStorageServiceService,private spinner: NgxSpinnerService){
+  
   }
 
   ngOnInit():void{
   }
 
   paymentDetail = new FormGroup({
-    accOwner: new FormControl('', Validators.required),
+    accOwner: new FormControl('', [Validators.required,Validators.pattern('^[a-zA-Z ]*$')]),
     iban : new FormControl('', Validators.required)
   })
 
  
   submitForm()
   { 
+    this.spinner.show();
     var paymentData: PaymentData = {
       "customerId":new Date().getTime(),
       "iban":this.paymentDetail.value.iban || '',
@@ -36,9 +39,11 @@ export class PaymentInformationComponent {
           if(response)
           {
             this.dataStorage.setLocalData('paymentDataId',response.paymentDataId);
+            this.spinner.hide();
             this.router.navigate(['/', 'successPage']); 
           }
           else{
+            this.spinner.hide();
             this.dataStorage.clearStorage();           
           }
 

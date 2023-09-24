@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { NgxSpinnerModule } from "ngx-spinner";
+
+
+
 
 @NgModule({
   declarations: [
@@ -38,9 +42,12 @@ import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
     MatToolbarModule,
     MatCardModule,
     MatDividerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxSpinnerModule
+    
     
     ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -2,6 +2,7 @@
   <span class="fill-remaining-space">User Registration Form</span>
 </mat-toolbar>
 
+<ngx-spinner type="ball-clip-rotate" [fullScreen] = "true"  color = "#ffffff" size="medium">Loading..</ngx-spinner>
 
 <div class="col">
   <mat-card class="center">
@@ -24,11 +25,8 @@
         <div class="row">
           <mat-form-field class="form-element" appearance="outline" >
             <mat-label>Last Name</mat-label>
-            <input matInput formControlName="lname" required class="form-control" />           
-          </mat-form-field>
-          <mat-error *ngIf="personalData.get('lname')?.hasError('required') && (personalData.get('lname')?.dirty || personalData.get('lname')?.touched)">
-            Last name is required.
-          </mat-error>
+            <input matInput formControlName="lname"  class="form-control" />           
+          </mat-form-field>         
         </div>
 
         <div class="row">
@@ -47,7 +45,6 @@
       </form>
     </mat-card-content>
   </mat-card>
-
 </div>
 
 

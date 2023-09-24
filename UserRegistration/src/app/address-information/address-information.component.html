@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
     <span class="fill-remaining-space">User Registration Form</span>
 </mat-toolbar>
+<ngx-spinner type="ball-clip-rotate" [fullScreen] = "true"  color = "#ffffff"  size="medium">Loading..</ngx-spinner>
 
 <div class="col">
     <mat-card class="center">
@@ -51,7 +52,6 @@
                     </mat-form-field>
                 </div>
                 <div class="alignment">
-                    <button class="submit-btn"  mat-raised-button color="accent" (click)="goToPreviousStep()">Previous</button>
                     <button class="submit-btn" type="submit" mat-raised-button color="primary"
                         [disabled]="!addressData.valid" (click)="goToNextStep()">Next</button>
                 </div>

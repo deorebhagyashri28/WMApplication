@@ -1,31 +1,37 @@
-# UserRegistration
+# WMApplication
+This repository consist of simple user registration Angular web application : Wunder Mobility 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.
+# Used Technologies and libraries:
+Angular
+Typescript
+Angular material
+HttpModule
 
-## Development server
+# Possible optimizations for my code
+-Can use authguard to protect the direct use of URL for accessing application internal routes.
+-
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Things could be more better
+-UI could be more better.
 
-## Code scaffolding
+# Problems Faced
+-During API call to get the payment Id I faced Cross Origin issue.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Project Structure
+- Four main components:
+    1.Personal Information
+    2.Address Information
+    3.Payment Information
+    4.Success
+- Services:
+    1.Data Storage
+    2.Http request
+-Data Model:
+    1.Http request body
+-Proxy Seeting file
+-Asset:
+    1.Sucess image for final page
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-
+# Assumptions
 // assuming frontend and server are running on same machine in that case proxy.json file will not required.
 // if they are not same machine then proxy settings has to be done accordingly
