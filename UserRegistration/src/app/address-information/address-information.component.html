@@ -1,27 +1,30 @@
-<div>
-    <h4>Address Information</h4>
+<div class="formcontainer center">
+    <p class="heading">Address Information</p>
+    <hr>
     <form [formGroup]="addressData" #form="ngForm">
         <div class="form-group">
-            <label for="street" class="form-label">Street:</label>
+            <label for="street" class="form-label">Street</label>
             <input type="text" id="street" name="street" formControlName="street" placeholder="Street"
              required class="form-control">
         </div>
         <div class="form-group">
-            <label for="hnumber" class="form-label">Hause Number:</label>
+            <label for="hnumber" class="form-label">Hause Number</label>
             <input type="number" id="hnumber" name="hnumber" formControlName="hnumber" placeholder="Hause Number"
              required  class="form-control ">
         </div>
         <div class="form-group">
-            <label for="zcode" class="form-label">Zip code:</label>
+            <label for="zcode" class="form-label">Zip code</label>
             <input type="text" id="zcode" name="zcode" formControlName="zcode" placeholder="Zip code"
              required class="form-control">
         </div>
         <div class="form-group">
-            <label for="city" class="form-label">City:</label>
+            <label for="city" class="form-label">City</label>
             <input type="text" id="city" name="city" formControlName="city" placeholder="City"
              required class="form-control">
         </div>
-        <button type="button" class="btn btn-sm btn-primary" (click)="previous()">Back</button>
-        <button type="button"  class="btn btn-sm btn-primary" (click)="next()">Next</button>
+        <div class="buttonStyle">
+        <button type="button" class="btn btn-secondary" mdbRipple (click)="previous()">Back</button>
+        <button type="button"  class="btn btn-primary" mdbRipple (click)="next()">Next</button>
+        </div>
     </form>
     </div>
